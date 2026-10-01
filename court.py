@@ -39,8 +39,9 @@ if __name__ == "__main__":
     else:
         cv2.imshow("calibrate", frame)
         cv2.setMouseCallback("calibrate", mouse_click) # to capture mouse events on a specific display window and pass them to a custom function
-        while True:
-            if cv2.waitKey(0) & 0xFF == ord('q'): # wait forever until click
+        # keep the window alive until 4 points are collected
+        while len(points) < 4:
+            if cv2.waitKey(1) & 0xFF == ord('q'):   # press q to give up early
                 break
         cv2.destroyAllWindows() # clean up
         print("all points: ", points)
